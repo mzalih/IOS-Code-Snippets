@@ -1,10 +1,10 @@
 ```
-//  Created by Mzalih on 28/12/15.
-//  Copyright © 2015 Toobler. All rights reserved.
-//
+//  Created by Mzalih on 1/1/16.
+//  Copyright © 2015 zalih. All rights reserved.
 
 ```
- Copy FbLogin folder and all its contents to your project from this repo. For Sample Code<br><br>
+Copy FbLogin folder and all its contents to your project from this repo. For Sample Code<br><br>
+
 
 1. Visit the Getting Started with the Facebook iOS SDK documentation to download the Facebook SDK and install it.<br>
 <br>
