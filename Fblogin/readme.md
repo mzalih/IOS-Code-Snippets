@@ -80,7 +80,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 ~~1. Add the FacebookSDKLoginKit.Framework & Bolts.framework to your project just like your did with the FacebookSDKCoreKit.Framework. Drag it or add it using the “Linked Frameworks and Libraries” within your target settings.~~
     <br> </br>
-~~2.  Add the following import statement to your Bridging-Header.h, right below the Core Kit entry. ~~
+
+~~2.  Add the following import statement to your Bridging-Header.h, right below the Core Kit entry.~~
 
 ``` swift 
     #import <FBSDKLoginKit/FBSDKLoginKit.h>
