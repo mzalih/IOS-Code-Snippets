@@ -50,7 +50,7 @@ Here’s what it looks like:
 8.Add the following to your AppDelegate.swift. The “OpenURL” method allows your app to open again after the user has validated their login credentials.
 9.The FBSDKAppEvents.activateApp() method allows Facebook to capture events within your application including Ads clicked on from Facebook to track downloads from Facebook and events like how many times your app was opened. 
 
-``` swift
+``` 
 
 //
 //  AppDelegate.swift
