@@ -13,6 +13,7 @@
 		240012E81C36472100E278BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 240012E71C36472100E278BA /* Assets.xcassets */; };
 		240012EB1C36472100E278BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240012E91C36472100E278BA /* LaunchScreen.storyboard */; };
 		240012FA1C364E9900E278BA /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240012F91C364E9900E278BA /* FBSDKCoreKit.framework */; settings = {ASSET_TAGS = (); }; };
+		240012FD1C366C0500E278BA /* FbLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240012FC1C366C0500E278BA /* FbLogin.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		240012EC1C36472100E278BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		240012F41C364A9800E278BA /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		240012F91C364E9900E278BA /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		240012FC1C366C0500E278BA /* FbLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FbLogin.swift; path = FBLogin/FbLogin.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 		240012DF1C36472000E278BA /* SocialLgin */ = {
 			isa = PBXGroup;
 			children = (
+				240012FB1C366BD000E278BA /* FBLogin */,
 				240012E01C36472000E278BA /* AppDelegate.swift */,
 				240012E21C36472000E278BA /* ViewController.swift */,
 				240012E41C36472000E278BA /* Main.storyboard */,
@@ -68,6 +71,14 @@
 				240012F41C364A9800E278BA /* Bridging-Header.h */,
 			);
 			path = SocialLgin;
+			sourceTree = "<group>";
+		};
+		240012FB1C366BD000E278BA /* FBLogin */ = {
+			isa = PBXGroup;
+			children = (
+				240012FC1C366C0500E278BA /* FbLogin.swift */,
+			);
+			name = FBLogin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +151,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				240012FD1C366C0500E278BA /* FbLogin.swift in Sources */,
 				240012E31C36472000E278BA /* ViewController.swift in Sources */,
 				240012E11C36472000E278BA /* AppDelegate.swift in Sources */,
 			);

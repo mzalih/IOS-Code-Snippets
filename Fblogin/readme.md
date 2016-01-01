@@ -4,12 +4,15 @@
 //
 
 ```
+0. Copy FbLogin folder and all its contents to your project from this repo.<br><br>
+
 1. Visit the Getting Started with the Facebook iOS SDK documentation to download the Facebook SDK and install it.<br>
 <br>
 2. Add the FacebookSDKCoreKit.Framework to your project as you normally would. Drag it or add it using the “Linked Frameworks and Libraries” within your target settings.(Copy the files never link reference)<br>
 <br>
 3. You won’t be able to use the normal #import <FBSDKCoreKit/FBSDKCoreKit.h> to link the framework so you need to do a work around by creating a Bridging Header.<br> 
-<br>
+<br> 
+~~
 4. Create a new “Objective-C” Header file by clicking “File > New”<br>
 <br>
 All you need in the Bridging-Header.h is the import statement for the Facebook SDK.
@@ -27,32 +30,22 @@ All you need in the Bridging-Header.h is the import statement for the Facebook S
 ```
 <br>
 <br>
-
+~~
 
  5 . Add it to your target’s build settings:
 <br>In Xcode, if you go into the build settings for your target, and scroll all the way down you’ll find a “Swift Compiler – Code Generation” section.<br>
 
-6. Set “Objective-C Bridging Header” to <#PROJECT_NAME>/Bridging-Header.h<br>
+Set “Objective-C Bridging Header” to <#PROJECT_NAME>/Bridging-Header.h<br>
 
-“Install Objective-C Compatibility Header”, should be set to “Yes”.<br>
+ 6. “Install Objective-C Compatibility Header”, should be set to “Yes”.<br>
 
 Here’s what it looks like:
 
-<img src="https://raw.githubusercontent.com/mzalih/IOS-Code-Snippets/master/Fblogin/look.png"><br>
-7. Now your app should be able to access all of the APIs in the Facebook SDK.<br>
-8. Add the following to your AppDelegate.swift. The “OpenURL” method allows your app to open again after the user has validated their login credentials.<br>
-9. The FBSDKAppEvents.activateApp() method allows Facebook to capture events within your application including Ads clicked on from Facebook to track downloads from Facebook and events like how many times your app was opened. <br>
-
+<img src="https://raw.githubusercontent.com/mzalih/IOS-Code-Snippets/master/Fblogin/look.png"><br><br>
+7. Now your app should be able to access all of the APIs in the Facebook SDK.<br><br>
+8. Add the following to your AppDelegate.swift. The “OpenURL” method allows your app to open again after the user has validated their login credentials.<br>.<br>
+9. The FBSDKAppEvents.activateApp() method allows Facebook to capture events within your application including Ads clicked on from Facebook to track downloads from Facebook and events like how many times your app was opened. <br><br>
 ``` 
-
-//
-//  AppDelegate.swift
-//  FacebookTutorial
-//
-//  Created by Brian Coleman on 2015-03-27.
-//  Copyright (c) 2015 Brian Coleman. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
@@ -62,71 +55,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        return FbLogin.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
     func application(application: UIApplication,
         openURL url: NSURL,
         sourceApplication: String?,
         annotation: AnyObject?) -> Bool {
-            return FBSDKApplicationDelegate.sharedInstance().application(
+            return FbLogin.application(
                 application,
                 openURL: url,
                 sourceApplication: sourceApplication,
                 annotation: annotation)
     }
-
-    func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        FBSDKAppEvents.activateApp()
-    }
-
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-
+   
 }
 
 ```
-
-Facebook Login for iOS
-
-	Now we’ll setup our app to use Facebook Login.
-
+</hr>
+<h3>Facebook Login for iOS</h3>
+    <br>
+	Now we’ll setup our app to use Facebook Login. </br>
+~~
    1. Add the FacebookSDKLoginKit.Framework & Bolts.framework to your project just like your did with the FacebookSDKCoreKit.Framework. Drag it or add it using the “Linked Frameworks and Libraries” within your target settings.
+    <br> </br>
    2.  Add the following import statement to your Bridging-Header.h, right below the Core Kit entry.
+   <br> </br>
 
-	``` swift
+	``` swift 
     #import <FBSDKLoginKit/FBSDKLoginKit.h>
 	```
+~~
    3.  Add the Facebook Login button to your ViewController.swift.
    4. After you add the button, you should update your view controller to check for an existing token at load. This eliminates an unnecessary app switch to Facebook if someone already granted permissions to your app.
    5. When you add Facebook Login, your app can ask someone for permissions on a subset of that person’s data. Use the readPermissions or publishPermissions property of the FBSDKLoginButton. 
 
 
 ``` swift
-//
-//  ViewController.swift
-//  FacebookTutorial
-//
-//  Created by Brian Coleman on 2015-03-27.
-//  Copyright (c) 2015 Brian Coleman. All rights reserved.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
