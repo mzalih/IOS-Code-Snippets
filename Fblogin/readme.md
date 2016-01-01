@@ -78,10 +78,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 <br>
 	Now we’ll setup our app to use Facebook Login. </br>
 
-~~1. Add the FacebookSDKLoginKit.Framework & Bolts.framework to your project just like your did with the FacebookSDKCoreKit.Framework. Drag it or add it using the “Linked Frameworks and Libraries” within your target settings.~~
-    <br> </br>
+~~1. Add the FacebookSDKLoginKit.Framework & Bolts.framework to your project just like your did with the FacebookSDKCoreKit.Framework. Drag it or add it using the “Linked Frameworks and Libraries” within your target settings.
+    <br> 
 
-~~2.  Add the following import statement to your Bridging-Header.h, right below the Core Kit entry.~~
+2.  Add the following import statement to your Bridging-Header.h, right below the Core Kit entry.~~
 
 ``` swift 
     #import <FBSDKLoginKit/FBSDKLoginKit.h>
@@ -125,10 +125,12 @@ class ViewController: UIViewController {
 ```
 Using the FBSDKLoginButtonDelegate Methods<br>
 
-    Add in the additional code for the FBSDKLoginButtonDelegate. This is helpful to know if the user did login correctly and if they did you can grab their information.<br>
-    First add the delegate FBSDKLoginButtonDelegate to the class definition.<br>
-```
-    class ViewController: UIViewController, FBSDKLoginButtonDelegate {
+Add in the additional code for the FBSDKLoginButtonDelegate. This is helpful to know if the user did login correctly and if they did you can grab their information.
+<br>
+First add the delegate FBSDKLoginButtonDelegate to the class definition.
+<br>
+``` swift
+class ViewController: UIViewController, FBSDKLoginButtonDelegate {
 
  //   Add the following callback methods to your View Controller.
 
@@ -159,7 +161,7 @@ Using the FBSDKLoginButtonDelegate Methods<br>
         }
 ```
     Here is an extra method to grab the Users Facebook data. You can call this method anytime after a user has logged in by calling self.returnUserData().
-```
+``` swift
         func returnUserData()
         {
             let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
@@ -183,13 +185,75 @@ Using the FBSDKLoginButtonDelegate Methods<br>
 ```
 Enter your Facebook App Information
 
-    There is one final step needed to be performed, and that is to add three new keys to the project’s .plist file. So, open it by clicking on the Supporting Files group in the Project Navigator and then on the Info.plist file. Add a new key named FacebookAppID, and as its value paste the App ID value which you can copy from the Facebook dashboard, at the top of it. Similarly, add the FacebookDisplayName key, and in its value paste the Display Name.Finally, create a new key named URL Types, and set its type to array with one item only. Give it the URL Schemes title and make it an array too. In the one and only item that should be contained, set the app ID value you copied from the Facebook dashboard, prefixing it with the fb literal. The image below shows all the three additions on the .plist file:
-    Screen Shot 2015-03-27 at 10.12.39 AM
-    Compile your project and you should see the following screen. Once you click the “Log in with Facebook” button, it should kick you out to the Facebook App or the Facebook website for the user to login. After they have, it’ll kick back to your app and you’ll see the user information in the console.
-    Screen Shot 2015-03-27 at 11.43.09 AM
-    Now it’s up to you to use the users information as you wish. Maybe to populate a user profile or to pull the users Facebook friends so you can build a leaderboard. 
+<br>From the Facebook SDK folder, drag the folder FBSDKCoreKit.Framework, FBSDKLoginKit.Framework, FBSDKShareKit.Framework into your Xcode Projects <br>
+Framework folder. Uncheck "Copy into destination group folder".<br>
+Configure your info.plist<br>
+Find the .plist file in the Supporting Files folder in your Xcode Project.<br>
+1. Right-click your .plist file and choose "Open As Source Code". <br>
+2. Copy & Paste the XML snippet into the body of your file ( <dict>...</dict> ).
+<br>
 
+``` xml
+<key>CFBundleURLTypes</key>
+<array>
+  <dict>
+  <key>CFBundleURLSchemes</key>
+  <array>
+    <string>fb1234567890</string>
+  </array>
+  </dict>
+</array>
+<key>FacebookAppID</key>
+<string>1234567890</string>
+<key>FacebookDisplayName</key>
+<string>logZalihNow</string>
+```
+<br>
+3. If you compile your app with iOS SDK 9.0 or above, you will be affected by App Transport Security. Currently, you will need to whitelist Facebook domains in your app by adding the following to your application's .plist.
+</br>
 
+``` xml
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSExceptionDomains</key>
+    <dict>
+        <key>facebook.com</key>
+        <dict>
+            <key>NSIncludesSubdomains</key>
+            <true/>
+            <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+            <false/>
+        </dict>
+        <key>fbcdn.net</key>
+        <dict>
+            <key>NSIncludesSubdomains</key>
+            <true/>
+            <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+            <false/>
+        </dict>
+        <key>akamaihd.net</key>
+        <dict>
+            <key>NSIncludesSubdomains</key>
+            <true/>
+            <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+            <false/>
+        </dict>
+    </dict>
+</dict>
+```
+<br>
+4. If you use any of the Facebook dialogs (e.g., Login, Share, App Invites, etc.) that can perform an app switch to Facebook apps, your application's .plist also need to handle this.
+</br>
+
+``` xml
+<key>LSApplicationQueriesSchemes</key>
+<array>
+  <string>fbapi</string>
+  <string>fb-messenger-api</string>
+  <string>fbauth2</string>
+  <string>fbshareextension</string>
+</array>
+```
 
 ``` swift
 
