@@ -12,10 +12,11 @@
 <br>
 3. You won’t be able to use the normal #import <FBSDKCoreKit/FBSDKCoreKit.h> to link the framework so you need to do a work around by creating a Bridging Header.<br> 
 <br> 
-~~
-4. Create a new “Objective-C” Header file by clicking “File > New”<br>
+
+
+~~4. Create a new “Objective-C” Header file by clicking “File > New” ~~<br>
 <br>
-All you need in the Bridging-Header.h is the import statement for the Facebook SDK.
+~~All you need in the Bridging-Header.h is the import statement for the Facebook SDK.~~
 <br>
 <br>
 
@@ -30,7 +31,6 @@ All you need in the Bridging-Header.h is the import statement for the Facebook S
 ```
 <br>
 <br>
-~~
 
  5 . Add it to your target’s build settings:
 <br>In Xcode, if you go into the build settings for your target, and scroll all the way down you’ll find a “Swift Compiler – Code Generation” section.<br>
@@ -76,16 +76,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 <h3>Facebook Login for iOS</h3>
     <br>
 	Now we’ll setup our app to use Facebook Login. </br>
-~~
-   1. Add the FacebookSDKLoginKit.Framework & Bolts.framework to your project just like your did with the FacebookSDKCoreKit.Framework. Drag it or add it using the “Linked Frameworks and Libraries” within your target settings.
+
+ ~~1. Add the FacebookSDKLoginKit.Framework & Bolts.framework to your project just like your did with the FacebookSDKCoreKit.Framework. Drag it or add it using the “Linked Frameworks and Libraries” within your target settings.~~
     <br> </br>
-   2.  Add the following import statement to your Bridging-Header.h, right below the Core Kit entry.
+   ~~2.  Add the following import statement to your Bridging-Header.h, right below the Core Kit entry.~~
    <br> </br>
 
 	``` swift 
     #import <FBSDKLoginKit/FBSDKLoginKit.h>
 	```
-~~
    3.  Add the Facebook Login button to your ViewController.swift.
    4. After you add the button, you should update your view controller to check for an existing token at load. This eliminates an unnecessary app switch to Facebook if someone already granted permissions to your app.
    5. When you add Facebook Login, your app can ask someone for permissions on a subset of that person’s data. Use the readPermissions or publishPermissions property of the FBSDKLoginButton. 
