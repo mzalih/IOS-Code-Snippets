@@ -1,14 +1,15 @@
+```
 //
 //  MultiPicker.swift
 //
 //  Created by Mzalih on 28/12/15.
 //  Copyright © 2015 Toobler. All rights reserved.
 //
-
-1.Visit the Getting Started with the Facebook iOS SDK documentation to download the Facebook SDK and install it.
-2.Add the FacebookSDKCoreKit.Framework to your project as you normally would. Drag it or add it using the “Linked Frameworks and Libraries” within your target settings.
-3.You won’t be able to use the normal #import <FBSDKCoreKit/FBSDKCoreKit.h> to link the framework so you need to do a work around by creating a Bridging Header.
-4.Create a new “Objective-C” Header file by clicking “File > New”
+```
+1.Visit the Getting Started with the Facebook iOS SDK documentation to download the Facebook SDK and install it.<br>
+2.Add the FacebookSDKCoreKit.Framework to your project as you normally would. Drag it or add it using the “Linked Frameworks and Libraries” within your target settings.<br>
+3.You won’t be able to use the normal #import <FBSDKCoreKit/FBSDKCoreKit.h> to link the framework so you need to do a work around by creating a Bridging Header.<br>
+4.Create a new “Objective-C” Header file by clicking “File > New”<br>
 
 All you need in the Bridging-Header.h is the import statement for the Facebook SDK.
 <br>
@@ -37,18 +38,18 @@ All you need in the Bridging-Header.h is the import statement for the Facebook S
 <br>
 
 
-Add it to your target’s build settings:In Xcode, if you go into the build settings for your target, and scroll all the way down you’ll find a “Swift Compiler – Code Generation” section.
+Add it to your target’s build settings:In Xcode, if you go into the build settings for your target, and scroll all the way down you’ll find a “Swift Compiler – Code Generation” section.<br>
 
-Set “Objective-C Bridging Header” to <#PROJECT_NAME>/Bridging-Header.h
+Set “Objective-C Bridging Header” to <#PROJECT_NAME>/Bridging-Header.h<br>
 
-“Install Objective-C Compatibility Header”, should be set to “Yes”.
+“Install Objective-C Compatibility Header”, should be set to “Yes”.<br>
 
 Here’s what it looks like:
-![Alt tag](relative/look.png?raw=true "Title")
+
 <img src="https://raw.githubusercontent.com/mzalih/IOS-Code-Snippets/master/Fblogin/look.png">
-7.Now your app should be able to access all of the APIs in the Facebook SDK.
-8.Add the following to your AppDelegate.swift. The “OpenURL” method allows your app to open again after the user has validated their login credentials.
-9.The FBSDKAppEvents.activateApp() method allows Facebook to capture events within your application including Ads clicked on from Facebook to track downloads from Facebook and events like how many times your app was opened. 
+7.Now your app should be able to access all of the APIs in the Facebook SDK.<br>
+8.Add the following to your AppDelegate.swift. The “OpenURL” method allows your app to open again after the user has validated their login credentials.<br>
+9.The FBSDKAppEvents.activateApp() method allows Facebook to capture events within your application including Ads clicked on from Facebook to track downloads from Facebook and events like how many times your app was opened. <br>
 
 ``` 
 
@@ -164,14 +165,14 @@ class ViewController: UIViewController {
 
 }
 ```
-Using the FBSDKLoginButtonDelegate Methods
+Using the FBSDKLoginButtonDelegate Methods<br>
 
-    Add in the additional code for the FBSDKLoginButtonDelegate. This is helpful to know if the user did login correctly and if they did you can grab their information.
-    First add the delegate FBSDKLoginButtonDelegate to the class definition.
-
+    Add in the additional code for the FBSDKLoginButtonDelegate. This is helpful to know if the user did login correctly and if they did you can grab their information.<br>
+    First add the delegate FBSDKLoginButtonDelegate to the class definition.<br>
+```
     class ViewController: UIViewController, FBSDKLoginButtonDelegate {
 
-    Add the following callback methods to your View Controller.
+ //   Add the following callback methods to your View Controller.
 
         // Facebook Delegate Methods
         
@@ -198,9 +199,9 @@ Using the FBSDKLoginButtonDelegate Methods
         func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
             println("User Logged Out")
         }
-
+```
     Here is an extra method to grab the Users Facebook data. You can call this method anytime after a user has logged in by calling self.returnUserData().
-
+```
         func returnUserData()
         {
             let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
@@ -221,7 +222,7 @@ Using the FBSDKLoginButtonDelegate Methods
                 }
             })
         }
-
+```
 Enter your Facebook App Information
 
     There is one final step needed to be performed, and that is to add three new keys to the project’s .plist file. So, open it by clicking on the Supporting Files group in the Project Navigator and then on the Info.plist file. Add a new key named FacebookAppID, and as its value paste the App ID value which you can copy from the Facebook dashboard, at the top of it. Similarly, add the FacebookDisplayName key, and in its value paste the Display Name.Finally, create a new key named URL Types, and set its type to array with one item only. Give it the URL Schemes title and make it an array too. In the one and only item that should be contained, set the app ID value you copied from the Facebook dashboard, prefixing it with the fb literal. The image below shows all the three additions on the .plist file:
