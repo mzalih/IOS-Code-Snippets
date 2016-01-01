@@ -1,30 +1,22 @@
 ```
-//
-//  MultiPicker.swift
-//
 //  Created by Mzalih on 28/12/15.
 //  Copyright © 2015 Toobler. All rights reserved.
 //
-```
-1.Visit the Getting Started with the Facebook iOS SDK documentation to download the Facebook SDK and install it.<br>
-2.Add the FacebookSDKCoreKit.Framework to your project as you normally would. Drag it or add it using the “Linked Frameworks and Libraries” within your target settings.<br>
-3.You won’t be able to use the normal #import <FBSDKCoreKit/FBSDKCoreKit.h> to link the framework so you need to do a work around by creating a Bridging Header.<br>
-4.Create a new “Objective-C” Header file by clicking “File > New”<br>
 
+```
+1. Visit the Getting Started with the Facebook iOS SDK documentation to download the Facebook SDK and install it.<br>
+<br>
+2. Add the FacebookSDKCoreKit.Framework to your project as you normally would. Drag it or add it using the “Linked Frameworks and Libraries” within your target settings.(Copy the files never link reference)<br>
+<br>
+3. You won’t be able to use the normal #import <FBSDKCoreKit/FBSDKCoreKit.h> to link the framework so you need to do a work around by creating a Bridging Header.<br> 
+<br>
+4. Create a new “Objective-C” Header file by clicking “File > New”<br>
+<br>
 All you need in the Bridging-Header.h is the import statement for the Facebook SDK.
 <br>
-===========================================================================================
 <br>
 
 ```
-//
-//  Bridging-Header.h
-//  FacebookTutorial
-//
-//  Created by Brian Coleman on 2015-03-27.
-//  Copyright (c) 2015 Brian Coleman. All rights reserved.
-//
-
 #ifndef FacebookTutorial_Bridging_Header_h
 #define FacebookTutorial_Bridging_Header_h
 
@@ -34,22 +26,22 @@ All you need in the Bridging-Header.h is the import statement for the Facebook S
 
 ```
 <br>
-===========================================================================================
 <br>
 
 
-Add it to your target’s build settings:In Xcode, if you go into the build settings for your target, and scroll all the way down you’ll find a “Swift Compiler – Code Generation” section.<br>
+ 5 . Add it to your target’s build settings:
+<br>In Xcode, if you go into the build settings for your target, and scroll all the way down you’ll find a “Swift Compiler – Code Generation” section.<br>
 
-Set “Objective-C Bridging Header” to <#PROJECT_NAME>/Bridging-Header.h<br>
+6. Set “Objective-C Bridging Header” to <#PROJECT_NAME>/Bridging-Header.h<br>
 
 “Install Objective-C Compatibility Header”, should be set to “Yes”.<br>
 
 Here’s what it looks like:
 
-<img src="https://raw.githubusercontent.com/mzalih/IOS-Code-Snippets/master/Fblogin/look.png">
-7.Now your app should be able to access all of the APIs in the Facebook SDK.<br>
-8.Add the following to your AppDelegate.swift. The “OpenURL” method allows your app to open again after the user has validated their login credentials.<br>
-9.The FBSDKAppEvents.activateApp() method allows Facebook to capture events within your application including Ads clicked on from Facebook to track downloads from Facebook and events like how many times your app was opened. <br>
+<img src="https://raw.githubusercontent.com/mzalih/IOS-Code-Snippets/master/Fblogin/look.png"><br>
+7. Now your app should be able to access all of the APIs in the Facebook SDK.<br>
+8. Add the following to your AppDelegate.swift. The “OpenURL” method allows your app to open again after the user has validated their login credentials.<br>
+9. The FBSDKAppEvents.activateApp() method allows Facebook to capture events within your application including Ads clicked on from Facebook to track downloads from Facebook and events like how many times your app was opened. <br>
 
 ``` 
 
