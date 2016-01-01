@@ -45,7 +45,7 @@ Set “Objective-C Bridging Header” to <#PROJECT_NAME>/Bridging-Header.h
 
 Here’s what it looks like:
 ![Alt tag](relative/look.png?raw=true "Title")
-
+<img src="https://raw.githubusercontent.com/mzalih/IOS-Code-Snippets/master/Fblogin/look.png">
 7.Now your app should be able to access all of the APIs in the Facebook SDK.
 8.Add the following to your AppDelegate.swift. The “OpenURL” method allows your app to open again after the user has validated their login credentials.
 9.The FBSDKAppEvents.activateApp() method allows Facebook to capture events within your application including Ads clicked on from Facebook to track downloads from Facebook and events like how many times your app was opened. 
