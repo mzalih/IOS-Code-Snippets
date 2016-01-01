@@ -4,7 +4,7 @@
 //
 
 ```
-0. Copy FbLogin folder and all its contents to your project from this repo.<br><br>
+ Copy FbLogin folder and all its contents to your project from this repo. For Sample Code<br><br>
 
 1. Visit the Getting Started with the Facebook iOS SDK documentation to download the Facebook SDK and install it.<br>
 <br>
@@ -55,14 +55,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        return FbLogin.application(application, didFinishLaunchingWithOptions: launchOptions)
+        return FBSDKApplicationDelegate.sharedInstance()..application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
     func application(application: UIApplication,
         openURL url: NSURL,
         sourceApplication: String?,
         annotation: AnyObject?) -> Bool {
-            return FbLogin.application(
+            return FBSDKApplicationDelegate.sharedInstance()..application(
                 application,
                 openURL: url,
                 sourceApplication: sourceApplication,
