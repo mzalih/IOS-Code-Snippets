@@ -14,6 +14,8 @@
 		240012EB1C36472100E278BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240012E91C36472100E278BA /* LaunchScreen.storyboard */; };
 		240012FA1C364E9900E278BA /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240012F91C364E9900E278BA /* FBSDKCoreKit.framework */; settings = {ASSET_TAGS = (); }; };
 		240012FD1C366C0500E278BA /* FbLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240012FC1C366C0500E278BA /* FbLogin.swift */; settings = {ASSET_TAGS = (); }; };
+		240012FF1C3674C000E278BA /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240012FE1C3674C000E278BA /* FBSDKLoginKit.framework */; settings = {ASSET_TAGS = (); }; };
+		240013011C3674D400E278BA /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240013001C3674D400E278BA /* Bolts.framework */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,9 +26,11 @@
 		240012E71C36472100E278BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		240012EA1C36472100E278BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		240012EC1C36472100E278BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		240012F41C364A9800E278BA /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		240012F91C364E9900E278BA /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		240012FC1C366C0500E278BA /* FbLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FbLogin.swift; path = FBLogin/FbLogin.swift; sourceTree = "<group>"; };
+		240012FE1C3674C000E278BA /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		240013001C3674D400E278BA /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		240013021C36751100E278BA /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "FBLogin/Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +38,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				240013011C3674D400E278BA /* Bolts.framework in Frameworks */,
+				240012FF1C3674C000E278BA /* FBSDKLoginKit.framework in Frameworks */,
 				240012FA1C364E9900E278BA /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -46,6 +52,8 @@
 			children = (
 				240012DF1C36472000E278BA /* SocialLgin */,
 				240012DE1C36472000E278BA /* Products */,
+				240013001C3674D400E278BA /* Bolts.framework */,
+				240012FE1C3674C000E278BA /* FBSDKLoginKit.framework */,
 				240012F91C364E9900E278BA /* FBSDKCoreKit.framework */,
 			);
 			sourceTree = "<group>";
@@ -68,7 +76,6 @@
 				240012E71C36472100E278BA /* Assets.xcassets */,
 				240012E91C36472100E278BA /* LaunchScreen.storyboard */,
 				240012EC1C36472100E278BA /* Info.plist */,
-				240012F41C364A9800E278BA /* Bridging-Header.h */,
 			);
 			path = SocialLgin;
 			sourceTree = "<group>";
@@ -76,6 +83,7 @@
 		240012FB1C366BD000E278BA /* FBLogin */ = {
 			isa = PBXGroup;
 			children = (
+				240013021C36751100E278BA /* Bridging-Header.h */,
 				240012FC1C366C0500E278BA /* FbLogin.swift */,
 			);
 			name = FBLogin;
@@ -272,7 +280,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tap.zal.SocialLgin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "SocialLgin/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SocialLgin/FBLogin/Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -288,7 +296,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tap.zal.SocialLgin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "SocialLgin/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SocialLgin/FBLogin/Bridging-Header.h";
 			};
 			name = Release;
 		};

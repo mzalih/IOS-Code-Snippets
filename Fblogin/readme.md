@@ -35,7 +35,7 @@ All you need in the Bridging-Header.h is the import statement for the Facebook S
  5 . Add it to your target’s build settings:
 <br>In Xcode, if you go into the build settings for your target, and scroll all the way down you’ll find a “Swift Compiler – Code Generation” section.<br>
 
-Set “Objective-C Bridging Header” to <#PROJECT_NAME>/Bridging-Header.h<br>
+Set “Objective-C Bridging Header” to <#PROJECT_NAME>/FBLogin/Bridging-Header.h<br>
 
  6. “Install Objective-C Compatibility Header”, should be set to “Yes”.<br>
 
