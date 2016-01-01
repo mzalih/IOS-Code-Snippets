@@ -14,7 +14,8 @@ All you need in the Bridging-Header.h is the import statement for the Facebook S
 <br>
 ===========================================================================================
 <br>
-``` Obj C
+
+```
 //
 //  Bridging-Header.h
 //  FacebookTutorial
