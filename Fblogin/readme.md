@@ -73,8 +73,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 ```
 </hr>
+
 <h3>Facebook Login for iOS</h3>
-    <br>
+<br>
 	Now we’ll setup our app to use Facebook Login. </br>
 
 ~~1. Add the FacebookSDKLoginKit.Framework & Bolts.framework to your project just like your did with the FacebookSDKCoreKit.Framework. Drag it or add it using the “Linked Frameworks and Libraries” within your target settings.~~
