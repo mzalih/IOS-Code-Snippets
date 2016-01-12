@@ -6,3 +6,5 @@ Contains Multi IOS Snippets
 2 . Swift FaceBook Login
 <br>
 3 . Swift  Twitter Login (Fabrics)
+<br>
+4. Swift Image Picker 

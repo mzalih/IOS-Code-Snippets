@@ -1,5 +1,5 @@
 ``` swift
-//  MultiPicker.swift
+//  ImagePicker.swift
 //
 //  Created by Mzalih on 28/12/15.
 
