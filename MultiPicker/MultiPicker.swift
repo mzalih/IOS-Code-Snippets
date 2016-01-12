@@ -1,56 +1,59 @@
 //
 //  MultiPicker.swift
-//  WorkoutBunnies
 //
 //  Created by Mzalih on 28/12/15.
-//  Copyright © 2015 Toobler. All rights reserved.
 //
 
 import UIKit
 
-
-
 class MultiPicker :NSObject,UITableViewDataSource,UITableViewDelegate {
-   
+    
     var selectedList :NSMutableArray = NSMutableArray();
     var availableList :NSArray = NSMutableArray();
     var padding:CGFloat = 40.0;
     var tableView:UITableView = UITableView()
     var fullView:UIView = UIView()
+    var isSingleSelection = false;
     
-
+    
     func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
             
             var cell:UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("searchCellIdentifier", forIndexPath: indexPath)  as UITableViewCell
             
-                    if(cell == nil) {
-                        cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "searchCellIdentifier")
-                        cell!.selectionStyle = UITableViewCellSelectionStyle.None
-                    }
-                    let item : NSDictionary = availableList.objectAtIndex(indexPath.row) as! NSDictionary;
+            if(cell == nil) {
+                cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "searchCellIdentifier")
+                cell!.selectionStyle = UITableViewCellSelectionStyle.None
+            }
+            let item : NSDictionary = availableList.objectAtIndex(indexPath.row) as! NSDictionary;
             
-                    cell?.textLabel?.text = item.objectForKey("code")  as? String
+            cell?.textLabel?.text = item.objectForKey("code")  as? String
             
             if(selectedList.containsObject(item)){
                 cell?.imageView?.image = UIImage(named:"check");
             }else{
-                 cell?.imageView?.image = UIImage(named:"check_no");
-               
+                cell?.imageView?.image = UIImage(named:"check_no");
+                
             }
-                    return cell!
+            return cell!
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return availableList.count
     }
-     func tableView(tableView: UITableView,
+    func tableView(tableView: UITableView,
         didSelectRowAtIndexPath indexPath: NSIndexPath){
             let item : NSDictionary = availableList.objectAtIndex(indexPath.row) as! NSDictionary;
-            if(selectedList.containsObject(item)){
-                selectedList.removeObject(item)
-            }else{
+            if(isSingleSelection){
+                selectedList.removeAllObjects()
                 selectedList.addObject(item)
+            }else{
+                
+                if(selectedList.containsObject(item)){
+                    selectedList.removeObject(item)
+                }else{
+                    selectedList.addObject(item)
+                }
             }
             tableView.reloadData();
     }
@@ -85,7 +88,7 @@ class MultiPicker :NSObject,UITableViewDataSource,UITableViewDelegate {
         fullView.addSubview(tableView)
         fullView.addSubview(closeButton)
         withinView.addSubview(fullView)
-
+        
         
     }
     func checkExistat(index:Int)->Bool{
@@ -101,9 +104,7 @@ class MultiPicker :NSObject,UITableViewDataSource,UITableViewDelegate {
             selectedList.addObject(item)
         }
     }
-     @IBAction func hideAction(sender: AnyObject) {
+    @IBAction func hideAction(sender: AnyObject) {
         fullView.removeFromSuperview();
     }
-    
-
 }
