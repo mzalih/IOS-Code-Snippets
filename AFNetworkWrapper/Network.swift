@@ -1,9 +1,8 @@
 //
 //  Network.swift
-//  TradeLocker
 //
 //  Created by Mzalih on 05/01/16.
-//  Copyright © 2016 Toobler Technologies. All rights reserved.
+//  Copyright © 2016 Mzalih Technologies. All rights reserved.
 //
 
 import Foundation
