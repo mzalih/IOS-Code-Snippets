@@ -1,13 +1,14 @@
 //
 //  Network.swift
+//  TradeLocker
 //
 //  Created by Mzalih on 05/01/16.
-//  Copyright © 2016 Mzalih Technologies. All rights reserved.
+//  Copyright © 2016 Toobler Technologies. All rights reserved.
 //
 
 import Foundation
-import AFNetworking
 import MBProgressHUD
+import AFNetworking
 import Reachability
 
 class Network: NSObject {
@@ -82,34 +83,30 @@ class Network: NSObject {
             }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
                 if (parentView != nil) {
                     MBProgressHUD.hideAllHUDsForView(parentView, animated: true)
-                    if let data:NSDictionary = operation.responseObject as? NSDictionary{
-                        if let msg:String = data[Constants.RESP_MESSAGE] as? String{
-                            if(msg != Constants.KEY_EMPTY){
-                                Config.showAlert(nil, message: msg)
-                            }
-                        }else if let msg:NSDictionary = data[Constants.RESP_MESSAGE] as? NSDictionary{
-                            if let error:String = msg[Constants.RESP_ERROR] as? String{
-                                
-                                
-                                if(error != Constants.KEY_EMPTY){
-                                    Config.showAlert(nil, message: error)
-                                }
-                            }
-                        }
-                        
-                    }else{
-                        if (operation.responseString != nil) {
-                            if(operation.responseString != Constants.KEY_EMPTY){
-                                Config.showAlert(nil, message:Constants.ERROR_NETWORK)
-                            }
-                        }
-                    }
+                    handleFailure(operation,error: error,parentView: parentView!)
                 }
                 if (operation.cancelled) {
                     return
                 }
                 failure(operation, error!)
         })
+    }
+    static func handleFailure(operation: AFHTTPRequestOperation!, error: NSError!,parentView:UIView){
+        MBProgressHUD.hideAllHUDsForView(parentView, animated: true)
+        if let data:NSDictionary = operation.responseObject as? NSDictionary{
+            if let msg:String = data[Constants.RESP_MESSAGE] as? String{
+                if(msg != Constants.KEY_EMPTY){
+                    Config.showAlert(nil, message: msg)
+                }
+            }
+            
+        }else{
+            if (operation.responseString != nil) {
+                if(operation.responseString != Constants.KEY_EMPTY){
+                    Config.showAlert(nil, message:Constants.ERROR_NETWORK)
+                }
+            }
+        }
     }
     static func isDataConnectionAvailable() -> Bool {
         return Reachability.reachabilityForInternetConnection().currentReachabilityStatus() != NetworkStatus.NotReachable
@@ -123,7 +120,7 @@ class Network: NSObject {
                 showNetWorkError = false
                 Config.showAlert(nil, message:   Constants.ERROR_NETWORK)
             }
-            failure(AFHTTPRequestOperation(), NSError(domain:  Constants.ERROR_NETWORK, code: 0, userInfo: [ Constants.KEY_MESSAGE: Constants.KEY_EMPTY]))
+            failure(AFHTTPRequestOperation(), NSError(domain:  Constants.ERROR_NETWORK, code: 0, userInfo: [ Constants.MESSAGE_APP_NEME: Constants.KEY_EMPTY]))
             return
         }
         showNetWorkError = true
@@ -148,6 +145,7 @@ class Network: NSObject {
             }
             let apiSuccess: Bool = true
             success(operation, responseObject, apiSuccess)
+            
             if  let res_status:String = responseObject[Constants.RESP_SPECIAL_MESSAGE] as? String{
                 // Have a special response here please handle it as a notification
                 print(res_status)
@@ -156,30 +154,7 @@ class Network: NSObject {
             
             }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
                 if (parentView != nil) {
-                    MBProgressHUD.hideAllHUDsForView(parentView, animated: true)
-                    
-                    
-                    if let data:NSDictionary = operation.responseObject as? NSDictionary{
-                        if let msg:String = data[Constants.RESP_MESSAGE] as? String{
-                            if(msg != Constants.KEY_EMPTY){
-                                Config.showAlert(nil, message: msg)
-                            }
-                        }else if let msg:NSDictionary = data[Constants.RESP_MESSAGE] as? NSDictionary{
-                            if let error:String = msg[Constants.RESP_ERROR] as? String{
-                                
-                                if(error != Constants.KEY_EMPTY){
-                                    Config.showAlert(nil, message: error)
-                                }
-                            }
-                        }
-                        
-                    }else{
-                        if (operation.responseString != nil) {
-                            if(operation.responseString != Constants.KEY_EMPTY){
-                                Config.showAlert(nil, message:Constants.ERROR_NETWORK)
-                            }
-                        }
-                    }
+                    handleFailure(operation, error: error,parentView:parentView! )
                 }
                 if (operation.cancelled) {
                     return
@@ -210,6 +185,8 @@ class Network: NSObject {
         if (parentView != nil) {
             MBProgressHUD.showHUDAddedTo(parentView, animated: true)
         }
+        
+        
         print(METHOD_POST+url)
         manager.POST(url, parameters: parameters, constructingBodyWithBlock: { (formData :AFMultipartFormData!) -> Void in
             if(data != nil){
@@ -223,30 +200,7 @@ class Network: NSObject {
                 success(op,obj,true)
             }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
                 if (parentView != nil) {
-                    MBProgressHUD.hideAllHUDsForView(parentView, animated: true)
-                    
-                    
-                    if let data:NSDictionary = operation.responseObject as? NSDictionary{
-                        if let msg:String = data[Constants.RESP_MESSAGE] as? String{
-                            if(msg != Constants.KEY_EMPTY){
-                                Config.showAlert(nil, message: msg)
-                            }
-                        }else if let msg:NSDictionary = data[Constants.RESP_MESSAGE] as? NSDictionary{
-                            if let error:String = msg[Constants.RESP_ERROR] as? String{
-                                
-                                if(error != Constants.KEY_EMPTY){
-                                    Config.showAlert(nil, message: error)
-                                }
-                            }
-                        }
-                        
-                    }else{
-                        if (operation.responseString != nil) {
-                            if(operation.responseString != Constants.KEY_EMPTY){
-                                Config.showAlert(nil, message:Constants.ERROR_NETWORK)
-                            }
-                        }
-                    }
+                    handleFailure(operation, error: error, parentView: parentView!)
                 }
                 if (operation.cancelled) {
                     return
@@ -259,17 +213,17 @@ class Network: NSObject {
         if(operation == nil){
             return
         }
-        if let data:NSDictionary = operation.responseObject as? NSDictionary{
-            if let msg:String = data[Constants.RESP_MESSAGE] as? String{
-                if(msg == Constants.MESSAGE_INVALID_KEY){
-                    // IS A WRONG API KEY
-                    // LETS LOGOUT AND INFORM USER TO LOGIN AGAIN
-                    // LOGOUT CKICKED
-                    if((AppDelegate.getInstance().menuView) != nil){
-                        AppDelegate.getInstance().menuView!.onClickLogoff(UIButton())
-                    }
-                }
-            }
-        }
+        //   if let data:NSDictionary = operation.responseObject as? NSDictionary{
+        //  if let msg:String = data[Constants.RESP_MESSAGE] as? String{
+        //  if(msg == Constants.MESSAGE_INVALID_KEY){
+        // IS A WRONG API KEY
+        // LETS LOGOUT AND INFORM USER TO LOGIN AGAIN
+        // LOGOUT CKICKED
+        //  if((AppDelegate.getInstance().menuView) != nil){
+        //      AppDelegate.getInstance().menuView!.onClickLogoff(UIButton())
+        //     }
+        //    }
+        //   }
+        //   }
     }
 }
