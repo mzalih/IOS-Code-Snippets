@@ -3,8 +3,6 @@
 //  DragNDrop
 //
 //  Created by Mzalih on 07/04/16.
-//  Copyright © 2016 Dan Fairbanks. All rights reserved.
-//
 import UIKit
 
 class DragToTable:NSObject {
