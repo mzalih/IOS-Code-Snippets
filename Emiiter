@@ -1,0 +1,54 @@
+Thanks https://www.youtube.com/watch?v=Cg5GzKsMF7M
+Create File named Emitter.h and  Emitter.m
+copy contents to Emitter.h
+<code>
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+@interface Emitter : NSObject
++(CAEmitterLayer *)getEmitter:(UIImage *)image;
+@end
+</code>
+
+
+copy contents to Emitter.m
+<code>
+
+#import "Emitter.h"
+
+
+@implementation Emitter
++(CAEmitterLayer *)getEmitter:(UIImage *)image{
+    CAEmitterLayer *layer = [[CAEmitterLayer alloc]init];
+    [layer setEmitterShape: kCAEmitterLayerLine];
+    NSMutableArray<CAEmitterCell *> *cells =[[NSMutableArray alloc]init];
+    [cells addObject: [self generateEmitterCell:image]];
+    [layer setEmitterCells:cells];
+    return layer;
+}
++(CAEmitterCell *)generateEmitterCell:(UIImage *)image
+{
+    CAEmitterCell *cell = [[CAEmitterCell alloc]init];
+    [cell setContents:image.CGImage];
+    cell.birthRate =1;
+    cell.lifetime =50 ;
+    cell.velocity = 40 ;
+    cell.velocityRange = 5;
+    cell.scale =0.1;
+    cell.scaleRange=0.08;
+    cell.emissionRange = (45 *(M_PI/180));
+    
+    
+    return cell;
+}
+@end
+</code>
+
+How to use
+
+<code>
+    CAEmitterLayer *layer = [Emitter getEmitter:[UIImage imageNamed:@"Bubble"]];
+    layer.emitterPosition =CGPointMake(self.view.frame.size.width/2,self.view.frame.size.height+100);
+    layer.emitterSize = CGSizeMake(self.view.frame.size.width , 0);
+     [self.view.layer addSublayer:layer];
+</code>
+
