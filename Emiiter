@@ -1,17 +1,17 @@
 Thanks https://www.youtube.com/watch?v=Cg5GzKsMF7M
 Create File named Emitter.h and  Emitter.m
 copy contents to Emitter.h
-<code>
+```objc
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 @interface Emitter : NSObject
 +(CAEmitterLayer *)getEmitter:(UIImage *)image;
 @end
-</code>
+```
 
 
 copy contents to Emitter.m
-<code>
+```objc
 
 #import "Emitter.h"
 
@@ -41,14 +41,14 @@ copy contents to Emitter.m
     return cell;
 }
 @end
-</code>
+```
 
 How to use
 
-<code>
+```objc
     CAEmitterLayer *layer = [Emitter getEmitter:[UIImage imageNamed:@"Bubble"]];
     layer.emitterPosition =CGPointMake(self.view.frame.size.width/2,self.view.frame.size.height+100);
     layer.emitterSize = CGSizeMake(self.view.frame.size.width , 0);
      [self.view.layer addSublayer:layer];
-</code>
+```
 
